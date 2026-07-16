@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # learer-eureka
 
 Run this project as a Spring Boot app (e.g. import into IDE and run
@@ -19,3 +20,6 @@ other commit
 final commit
 
 # Added service file
+=======
+# eureka-july
+>>>>>>> 9876eac685e0cdeeed61522f05bd106c67cc2b94

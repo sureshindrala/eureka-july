@@ -1,8 +1,16 @@
- @Library("com.chathura.slb@main") _ 
- helmPipeline (
-     appName: 'eureka'
-
- )
+pipeline {
+    agent {
+        label 'k8s-slave'
+    }
+    stages {
+        stage('build') {
+            steps{
+                echo "priniting eureka applications"
+            }
+        }
+    }
+    
+}
 
 //  @Library("com.chathura.slb@main") _ 
 //  jfrogPipeline (
