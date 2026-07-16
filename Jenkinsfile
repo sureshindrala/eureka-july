@@ -6,6 +6,7 @@ pipeline {
         stage('build') {
             steps{
                 echo "priniting eureka applications"
+                sh "mvn clean package"
             }
         }
     }
