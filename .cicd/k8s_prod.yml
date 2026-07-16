@@ -1,0 +1,31 @@
+apiVesion: apps/v1
+kind: Deployment
+metadata:
+  name: chathura-eurka-prod
+  labels:
+    app: chathura-eureka-prod
+spec:
+  replicas : 1
+  selector:
+    matchLabels:
+      app: chathura-eureka-prod
+  template:
+    metadata:
+      labels:
+        name: chathura-eureka-prod
+    spec:
+    - name: chathura-eureka-prod
+      image: DIT
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chathura-eureka-prod
+  labels:
+    app: chathura-eureka-prod
+spec:
+  ports:
+  - port: 80
+    targetport: 8761
+  selector:
+    app: chathura-eureka-prod

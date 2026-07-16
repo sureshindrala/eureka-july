@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chathura-eureka-stage
+  labels:
+    app: chathura-eureka-stage
+spec:
+  replicas: 1
+  selector:
+   matchLabels:
+    app: chathura-eureka-stage
+  template:
+    metadata:
+      labels:
+       app: chathura-eureka-stage
+    spec:
+    - name: chathura-eureka-stage
+      image: DIT
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chathura-eureka-stage 
+  labels:
+    app: chathura-eureka-stage
+spec:
+ ports:
+ - porrt: 80
+   targetport: 8761
+ selector:
+  app: chathura-eureka-stage

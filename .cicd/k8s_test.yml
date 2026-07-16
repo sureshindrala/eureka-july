@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chathura-eureka-test
+  labels:
+    app: chathura-eureka-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chathura-eureka-test
+  template:
+    metadata:
+     labels:
+      app: chathura-eureka-test
+  spec:
+  - name: chathura-eureka-test
+    image: DIT
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: chathura-eureka-test 
+  labels:
+    app: chathura-eureka-test
+spec:
+ ports:
+ - porrt: 80
+   targetport: 8761
+ selector:
+  app: chathura-eureka-test
