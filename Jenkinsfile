@@ -15,6 +15,7 @@ pipeline {
             }
         }
         stage ('sonar') {
+            steps {
             echo "******************Sonar stage***************"
             sh """
                 mvn clean verify sonar:sonar \
@@ -23,6 +24,8 @@ pipeline {
                 -Dsonar.login=sqa_c80e3244593c78df97164386bc32a4638fae0ae1
             """            
         }
+            }
+
     }
     
 }
