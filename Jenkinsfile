@@ -7,7 +7,7 @@ pipeline {
             steps{
                 echo "priniting eureka applications"
                 sh "mvn clean package -DskipTests=true "
-                artifacts: 'target/*jar'
+                archive 'target/*.jar'
 
             }
         }
