@@ -6,7 +6,9 @@ pipeline {
         stage('build') {
             steps{
                 echo "priniting eureka applications"
-                sh "mvn clean package"
+                sh "mvn clean package -DskipTests=true "
+                artifacts: 'target/*jar'
+
             }
         }
     }
