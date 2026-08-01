@@ -2,6 +2,9 @@ pipeline {
     agent {
         label 'k8s-slave'
     }
+    tools {
+        
+    }
     environment {
         APPLICATION_NAME = "eureka"
     }
@@ -19,9 +22,9 @@ pipeline {
             echo "******************Sonar stage***************"
             sh """
                 mvn sonar:sonar \
-                -Dsonar.projectKey=chathura-eureka \
-                -Dsonar.host.url=http://35.231.155.151:9000 \
-                -Dsonar.login=sqa_c80e3244593c78df97164386bc32a4638fae0ae1
+                -Dsonar.projectKey=maven_project \
+                -Dsonar.host.url=http://35.196.58.210:9000 \
+                -Dsonar.login=sqa_14f849b53741e77bf3dfaa31d6f061d200acd1e5
             """            
         }
             }
