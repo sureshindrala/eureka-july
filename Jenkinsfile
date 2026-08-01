@@ -2,9 +2,6 @@ pipeline {
     agent {
         label 'k8s-slave'
     }
-    tools {
-        
-    }
     environment {
         APPLICATION_NAME = "eureka"
     }
