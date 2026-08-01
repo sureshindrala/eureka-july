@@ -2,6 +2,10 @@ pipeline {
     agent {
         label 'k8s-slave'
     }
+    tools {
+        jdk 'java_21'
+        maven 'maven_3.6'
+    }
     environment {
         APPLICATION_NAME = "eureka"
     }
