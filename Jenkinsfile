@@ -22,15 +22,17 @@ pipeline {
             }
         }
         stage ('sonar') {
-            steps {          
-            echo "******************${APPLICATION_NAME}Sonar stage*******************"
-            withCredentials([string(credentialsId: 'sonar_creds', variable: 'sonar_creds')])
-                sh """
-                    mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar\
-                    -Dsonar.projectKey=maven_project \
-                    -Dsonar.host.url=$SONAR_HOST\
-                    -Dsonar.login= $sonar_creds
-                """            
+           steps {          
+             echo "******************${APPLICATION_NAME}Sonar stage*******************"
+                withCredentials([string(credentialsId: 'sonar_creds', variable: 'sonar_creds')]) {
+                    sh """
+                        mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar\
+                        -Dsonar.projectKey=maven_project \
+                        -Dsonar.host.url=$SONAR_HOST\
+                        -Dsonar.login= $sonar_creds
+                    """ 
+            }
+           
         }
             }
 
