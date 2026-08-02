@@ -8,6 +8,9 @@ pipeline {
     }
     environment {
         APPLICATION_NAME = "eureka"
+        SONAR_HOST = "http://35.196.58.210:9000"
+        
+
     }
     stages {
         stage('build') {
@@ -21,11 +24,12 @@ pipeline {
         stage ('sonar') {
             steps {          
             echo "******************Sonar stage*******************"
+            withCredentials([string(credentialsId: 'sonar_creds', variable: 'sonar_creds')])
             sh """
                  mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar\
                 -Dsonar.projectKey=maven_project \
-                -Dsonar.host.url=http://35.196.58.210:9000 \
-                -Dsonar.login=sqa_14f849b53741e77bf3dfaa31d6f061d200acd1e5
+                -Dsonar.host.url=$SONAR_HOST\
+                -Dsonar.login= $sonar_creds
             """            
         }
             }
