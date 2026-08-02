@@ -20,9 +20,10 @@ pipeline {
         }
         stage ('sonar') {
             steps {
+            # mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
             echo "******************Sonar stage*******************"
             sh """
-                mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+                 mvn sonar:sonar\
                 -Dsonar.projectKey=maven_project \
                 -Dsonar.host.url=http://35.196.58.210:9000 \
                 -Dsonar.login=sqa_14f849b53741e77bf3dfaa31d6f061d200acd1e5
