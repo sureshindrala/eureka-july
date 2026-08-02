@@ -9,8 +9,8 @@ pipeline {
     environment {
         APPLICATION_NAME = "eureka"
         SONAR_HOST = "http://35.196.58.210:9000"
-        POM_VERSION = readMavenPom.getVersion()
-        POM_PACKAGING = readMavenPom.getPackaging()
+        POM_VERSION = readMavenPom().getVersion()
+        POM_PACKAGING = readMavenPom().getPackaging()
         
 
     }
