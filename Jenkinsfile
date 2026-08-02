@@ -19,8 +19,7 @@ pipeline {
             }
         }
         stage ('sonar') {
-            steps {
-            # mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+            steps {          
             echo "******************Sonar stage*******************"
             sh """
                  mvn sonar:sonar\
