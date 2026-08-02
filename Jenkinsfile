@@ -40,7 +40,7 @@ pipeline {
         }
         stage ('BUILD_FORMAT') {
             steps {
-            echo "*******************Printing build format***************8"
+
                 script {
                     echo "Testing JAR SOURCE: chathura-${env.APPLICATION_NAME}-${env.POM_VERSION}.${env.POM_PACKAGING}"
 
