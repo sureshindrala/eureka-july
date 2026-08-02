@@ -9,6 +9,8 @@ pipeline {
     environment {
         APPLICATION_NAME = "eureka"
         SONAR_HOST = "http://35.196.58.210:9000"
+        POM_VERSION = readMavenPom.getVersion()
+        POM_PACKAGING = readMavenPom.getPackaging()
         
 
     }
@@ -31,10 +33,21 @@ pipeline {
                         -Dsonar.host.url=$SONAR_HOST\
                         -Dsonar.login=$sonar_creds
                     """ 
-            }
+                }
            
-        }
             }
+            
+        }
+        stage ('BUILD_FORMAT') {
+            steps {
+            echo "*******************Printing build format***************8"
+                script {
+                    echo "Testing JAR SOURCE: chathura-${env.APPLICATION_NAME}-${env.POM_VERSION}.${env.POM_PACKAGING}"
+
+                }
+
+            }
+        }
 
     }
     
