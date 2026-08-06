@@ -54,7 +54,7 @@ pipeline {
             steps {
                 script {
                     echo "************Build Docker Image*****************"
-                    sh cp ${workspace}/target/chathura-${env.APPLICATION_NAME}-${currentBuild.number}-${BRANCH_NAME}.${env.POM_PACKAGING} ./.cicd
+                    sh "cp ${workspace}/target/i27-${env.APPLICATION_NAME}-${env.POM_VERSION}.${env.POM_PACKAGING} ./.cicd"
                     sh "docker build --no-cache --build-arg JAR_SOURCE=chathura-${env.APPLICATION_NAME}-${currentBuild.number}-${BRANCH_NAME}.${env.POM_PACKAGING} -t sampleeureka:v1 ./.cicd/"
             
                 }
