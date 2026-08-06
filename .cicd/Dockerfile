@@ -7,10 +7,12 @@ WORKDIR /opt/chathura
 # create an argument to retreive JAR
 ARG JAR_SOURCE
 # cOPY JAR SRC TO DEST
-COPY ["${JAR_SOURCE}}" , "/opt/chathura/"]
+COPY ["${JAR_SOURCE}" , "/opt/chathura/"]
 # Change permission to folder
 RUN chmod 777 /opt/chathura
 # Expose port number
 EXPOSE 8761
 # Command for run java n
 CMD [ "java" , "-jar" ."/opt/chathura/chathura-eureka-0.0.1-SNAPSHOT.jar" ]
+
+#chathura-eureka-0.0.1-SNAPSHOT.jar
