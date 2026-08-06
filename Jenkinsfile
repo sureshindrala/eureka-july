@@ -54,7 +54,7 @@ pipeline {
             steps {
                 script {
                     echo "************Build Docker Image*****************"
-                    sh "docker build --no-cache --build-arg JAR_SOURCE=chathura-${env.APPLICATION_NAME}-${currentBuild.number}-${BRANCH_NAME}.${env.POM_PACKAGING} -t sample_eureka:v1 . ./.cicd"
+                    sh "docker build --no-cache --build-arg JAR_SOURCE=chathura-${env.APPLICATION_NAME}-${currentBuild.number}-${BRANCH_NAME}.${env.POM_PACKAGING} -t sample_eureka:v1 ./.cicd/"
             
                 }
             }
