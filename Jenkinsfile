@@ -52,17 +52,17 @@ pipeline {
 
             }
         }
-        stage ('Docker_BUILD') {
-            steps {
-                script {
-                    echo "************Build Docker Image*****************"
-                    sh "cp ${workspace}/target/chathura-${env.APPLICATION_NAME}-${env.POM_VERSION}.${env.POM_PACKAGING} ./.cicd"
-                    sh "ls -la ./.cicd"
-                    sh "docker build --force-rm --no-cache --pull --rm=true --build-arg JAR_SOURCE=chathura-${env.APPLICATION_NAME}-${env.POM_VERSION}.${env.POM_PACKAGING} -t ${env.DOCKER_HUB}/${env.APPLICATION_NAME}:${GIT_COMMIT} ./.cicd "
+        // stage ('Docker_BUILD') {
+        //     steps {
+        //         script {
+        //             echo "************Build Docker Image*****************"
+        //             sh "cp ${workspace}/target/chathura-${env.APPLICATION_NAME}-${env.POM_VERSION}.${env.POM_PACKAGING} ./.cicd"
+        //             sh "ls -la ./.cicd"
+        //             sh "docker build --force-rm --no-cache --pull --rm=true --build-arg JAR_SOURCE=chathura-${env.APPLICATION_NAME}-${env.POM_VERSION}.${env.POM_PACKAGING} -t ${env.DOCKER_HUB}/${env.APPLICATION_NAME}:${GIT_COMMIT} ./.cicd "
             
-                }
-            }
-        }
+        //         }
+        //     }
+        // }
         stage ('Docker Push') {
             steps {
             script {
