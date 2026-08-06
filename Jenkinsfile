@@ -11,6 +11,8 @@ pipeline {
         SONAR_HOST = "http://35.196.58.210:9000"
         POM_VERSION = readMavenPom().getVersion()
         POM_PACKAGING = readMavenPom().getPackaging()
+        DOCKER_HUB = "docker.io/sureshindrala"
+        DOCKER_CREDS = credentials('docker_creds')
         
 
     }
@@ -58,6 +60,23 @@ pipeline {
                     sh "ls -la ./.cicd"
                     sh "docker build --force-rm --no-cache --pull --rm=true --build-arg JAR_SOURCE=chathura-${env.APPLICATION_NAME}-${env.POM_VERSION}.${env.POM_PACKAGING} -t ${env.DOCKER_HUB}/${env.APPLICATION_NAME}:${GIT_COMMIT} ./.cicd "
             
+                }
+            }
+        }
+        stage ('Docker Push') {
+            steps {
+            script {
+            echo "*****************building Docker image***********************"
+                sh """
+                    cp ${workspace}/target/chathura-${env.APPLICATION_NAME}-${env.POM_VERSION}.${env.POM_PACKAGING} ./.cicd
+                    ls -la ./.cicd
+                    docker build --force-rm --no-cache --pull --rm=true --build-arg JAR_SOURCE=chathura-${env.APPLICATION_NAME}-${env.POM_VERSION}.${env.POM_PACKAGING} -t ${env.DOCKER_HUB}/${env.APPLICATION_NAME}:${GIT_COMMIT}  ./.cicd
+                    echo "***********Docker login***********************"
+                    docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW} 
+                    docker push ${env.DOCKER_HUB}/${env.APPLICATION_NAME}:${GIT_COMMIT}
+
+
+                """                     
                 }
             }
         }
