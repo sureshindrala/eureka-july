@@ -50,6 +50,16 @@ pipeline {
 
             }
         }
+        stage ('Docker_BUILD') {
+            steps {
+                script {
+                    echo "************Buildind Docker Image*****************"
+
+                    sh "docker build --no-cache --build-arg JAR_SOURCE=chathura-${env.APPLICATION_NAME}-${currentBuild.number}-${BRANCH_NAME}.${env.POM_PACKAGING} -t sample_eureka:v1"
+            
+                }
+            }
+        }
 
     }
     
