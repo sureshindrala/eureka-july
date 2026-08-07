@@ -216,6 +216,13 @@ pipeline {
     
 }
 
+def buildApp(){
+    return {
+        echo "Building ${env.APPLICATION_NAME} Application"
+        sh 'mvn clean package -DSkipTests=true'
+    }
+}
+
 def imageValidation() {
     return {
         println("**************Attempting pull the docker image**********")
