@@ -84,7 +84,7 @@ pipeline {
         stage ('docker build Dev') {
             steps {
                 echo "*****************Building Docker container-Dev*****************************"
-                withCredentials([usernamePassword(credentialsId: '', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockervm_greesh_creds', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                     script {
                      sh "sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME"@$docker_server_ip" "docker images"
                     }
