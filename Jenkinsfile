@@ -184,7 +184,7 @@ pipeline {
             when {
                 anyOf{
                     expression{
-                        params.deployToTest == 'yes'
+                        params.deployToStage == 'yes'
                     }
                 }
             }
@@ -199,14 +199,14 @@ pipeline {
             when {
                 anyOf{
                     expression{
-                        params.deployToTest == 'yes'
+                        params.deployToProd == 'yes'
                     }
                 }
             }
             steps {
                 script {
                     imageValidation().call()
-                    dockerdeploy('prod','82232').call()
+                    dockerdeploy('prod','8232').call()
                 }
             }
         }                 
