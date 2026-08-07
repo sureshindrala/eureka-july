@@ -13,6 +13,6 @@ RUN chmod 777 /opt/chathura
 # Expose port number
 EXPOSE 8761
 # Command for run java n
-CMD [ "java" , "-jar" ."/opt/chathura/chathura-eureka-0.0.1-SNAPSHOT.jar" ]
+CMD [ "java" , "-jar" ,"/opt/chathura/chathura-eureka-0.0.1-SNAPSHOT.jar" ]
 
 #chathura-eureka-0.0.1-SNAPSHOT.jar
