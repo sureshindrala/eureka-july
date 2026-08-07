@@ -267,14 +267,14 @@ def dockerdeploy(envDeploy,envPort) {
         try {
             // Stop existing container
             sh """
-            sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME"@"${env.DOCKER_SERVER}" "docker stop ${env.APPLICATION_NAME}-${envDeploy} || true"
-            sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME"@"${env.DOCKER_SERVER}" "docker rm ${env.APPLICATION_NAME}-${envDeploy} || true"
+            sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME"@"$docker_server_ip" "docker stop ${env.APPLICATION_NAME}-${envDeploy} || true"
+            sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME"@""$docker_server_ip" "docker rm ${env.APPLICATION_NAME}-${envDeploy} || true"
             """
 
             // Run new container
             sh """
-            sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME"@"${env.DOCKER_SERVER}" "docker container run -dit -p ${envPort}:8761 --name ${env.APPLICATION_NAME}-${envDeploy} ${env.DOCKER_HUB}/${env.APPLICATION_NAME}:${GIT_COMMIT}"
-            sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME"@"${env.DOCKER_SERVER}" "docker ps"
+            sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME"@""$docker_server_ip" "docker container run -dit -p ${envPort}:8761 --name ${env.APPLICATION_NAME}-${envDeploy} ${env.DOCKER_HUB}/${env.APPLICATION_NAME}:${GIT_COMMIT}"
+            sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME"@""$docker_server_ip" "docker ps"
             """
         } catch (err) {
             echo "Error caught: ${err}"
