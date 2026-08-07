@@ -216,6 +216,25 @@ pipeline {
     
 }
 
+def imageValidation() {
+    return {
+        println("**************Attempting pull the docker image**********")
+        try {
+            sh "docker pull ${env.DOCKER_HUB}/${env.APPLICATION_NAME}:${GIT_COMMIT}"
+            println("*************docker image pulled succesfully*************")
+        }
+        catch(Exception e) {
+            println("*************OOPS..!*****The docker image with this tag is not avaliable in this repo, So creating the Image****")
+            buildApp().call()
+            dockerBuildandPush().call()
+
+        }
+    }
+}
+
+
+
+
 def dockerBuildandPush() {
     return {
         echo "*****************building Docker image***********************"
