@@ -86,8 +86,17 @@ pipeline {
                 echo "*****************Building Docker container-Dev*****************************"
                 withCredentials([usernamePassword(credentialsId: 'dockervm_greesh_creds', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                     script {
+                        try {
+                            sh """
+                                sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME"@"$docker_server_ip" "docker stop ${env.APPLICATION_NAME}-dev "
+                                sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME"@"$docker_server_ip" "docker rm ${env.APPLICATION_NAME}-dev"
+                            """
+                        }
+                        catch($err){
+                            echo "Error caught: $err"
+                        }
                     sh """    
-                     sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME"@"$docker_server_ip" "docker run -dit -p 8761:8761 --name eureka-dev ${env.DOCKER_HUB}/${env.APPLICATION_NAME}:${GIT_COMMIT}"
+                     sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME"@"$docker_server_ip" "docker run -dit -p 8761:8761 --name ${env.APPLICATION_NAME}-dev ${env.DOCKER_HUB}/${env.APPLICATION_NAME}:${GIT_COMMIT}"
                      sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME"@"$docker_server_ip" "docker ps"
                      """
                     }
