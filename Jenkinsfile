@@ -182,10 +182,10 @@ pipeline {
         }
         stage('docker deploy-stage') {
             when {
-                anyOf{
-                    expression{
-                        params.deployToStage == 'yes'
-                    }
+                anyOf {
+                    branch 'release/*'
+                    tag pattern: "v\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}\\", comparator: "REGEXP"
+                } 
                 }
             }
             steps {
@@ -197,10 +197,9 @@ pipeline {
         } 
         stage('docker deploy-prod') {
             when {
-                anyOf{
-                    expression{
-                        params.deployToProd == 'yes'
-                    }
+                anyOf {
+                    tag pattern: "v\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}", comparator: "REGEXP" // v1.2.3 is the correct one, v123 is the wrong one
+                }
                 }
             }
             steps {
