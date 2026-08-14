@@ -6,7 +6,7 @@
 // )
 
 k8sPipeline (
-    appName: 'eureka',
+    appName: 'eureka'
     // devHostPort: '5761',
     // contPort: '8761'
 )
