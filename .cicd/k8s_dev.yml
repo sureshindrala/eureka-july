@@ -13,10 +13,10 @@ spec:
     metadata:
       labels:
         app: chathura-eureka-dev
-  spec:
-    - name:
-      containers:
-      image: DIT # Image tag will be replaced by shared library
+    spec:
+      - name:
+        containers:
+        image: DIT # Image tag will be replaced by shared library
 ---
 apiVersion: v1 
 kind: Service
