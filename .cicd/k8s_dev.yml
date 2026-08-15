@@ -24,8 +24,8 @@ metadata:
   name: chathura-eureka-dev
   labels:
     app: chathura-eureka-dev
-  spec:
-   ports:
+spec:
+  ports:
    - port: 80
      targetPort: 8761
   selector:
