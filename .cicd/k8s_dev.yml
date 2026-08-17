@@ -5,6 +5,8 @@ metadata:
   labels:
     app: chathura-eureka-dev
 spec:
+  imagePullSecrets:
+    - name: gar-secret
   replicas: 1
   selector:
     matchLabels:
