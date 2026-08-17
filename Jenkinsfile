@@ -5,9 +5,16 @@
 //     contPort: '8761'
 // )
 
-google_artifact (
-    appName: 'eureka'
+// google_artifact (
+//     appName: 'eureka'
+//     // devHostPort: '5761',
+//     // contPort: '8761'
+// )
+
+//update GARfdl
+
+helmPipeline(
+        appName: 'eureka'
     // devHostPort: '5761',
     // contPort: '8761'
 )
-//update GARfdl
