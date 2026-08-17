@@ -5,8 +5,6 @@ metadata:
   labels:
     app: chathura-eureka-dev
 spec:
-  imagePullSecrets:
-    - name: gar-secret
   replicas: 1
   selector:
     matchLabels:
@@ -16,6 +14,8 @@ spec:
       labels:
         app: chathura-eureka-dev
     spec:
+      imagePullSecrets:
+        - name: gar-secret      
       containers:
       - name: chathura-eureka-dev
         image: DIT # Image tag will be replaced by shared library
@@ -36,4 +36,4 @@ spec:
     app: chathura-eureka-dev
 
  #   edit docker file
- # added image secret
+ # added image
