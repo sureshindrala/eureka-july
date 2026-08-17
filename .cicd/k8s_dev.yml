@@ -33,4 +33,4 @@ spec:
   selector:
     app: chathura-eureka-dev
 
- #   
+ #   edit docker file
