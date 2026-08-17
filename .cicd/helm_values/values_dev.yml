@@ -1,0 +1,7 @@
+fullname: chathura-eureka
+replicas:
+  default: 1
+image:
+  name: us-central1-docker.pkg.dev/project-6662d06c-357a-4745-a74/chathura-cloth/eureka   #trialbc0u3p.jfrog.io/cart-docker-docker/eureka
+  tag: random
+targetPort: 8761 # this will be overridden by the values.yaml file in the aplication environment folder//
