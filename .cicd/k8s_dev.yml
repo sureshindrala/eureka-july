@@ -29,7 +29,7 @@ spec:
   ports:
   - port: 8761
     targetPort: 8761
-  #  NodePort: 31512
+  #  NodePort: 31512 2333
   selector:
     app: chathura-eureka-dev
 
