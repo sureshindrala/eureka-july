@@ -32,3 +32,5 @@ spec:
   #  NodePort: 31512
   selector:
     app: chathura-eureka-dev
+
+ #   
