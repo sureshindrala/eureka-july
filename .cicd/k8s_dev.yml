@@ -1,39 +1,96 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: chathura-eureka-dev
+#   labels:
+#     app: chathura-eureka-dev
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: chathura-eureka-dev
+#   template:
+#     metadata:
+#       labels:
+#         app: chathura-eureka-dev
+#     spec:
+#       imagePullSecrets:
+#         - name: gar-secret      
+#       containers:
+#       - name: chathura-eureka-dev
+#         image: DIT # Image tag will be replaced by shared library
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: chathura-eureka-dev
+#   labels:
+#     app: chathura-eureka-dev
+# spec:
+#   #type: NodePort
+#   ports:
+#   - port: 8761
+#     targetPort: 8761
+#   #  NodePort: 31512 2333
+#   selector:
+#     app: chathura-eureka-dev
+
+#  #   edit docker file
+#  # added image ss
+---
+# Deployment file for eureka 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: chathura-eureka-dev
+  name:  chathura-eureka-dev
   labels:
-    app: chathura-eureka-dev
+    app:  chathura-eureka-dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: chathura-eureka-dev
+      app:  chathura-eureka-dev
   template:
     metadata:
       labels:
-        app: chathura-eureka-dev
+        app:  chathura-eureka-dev
     spec:
-      imagePullSecrets:
-        - name: gar-secret      
+      # imagePullSecrets:
+      # - name: 
       containers:
-      - name: chathura-eureka-dev
+      - name:  chathura-eureka-dev
         image: DIT # Image tag will be replaced by shared library
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: chathura-eureka-dev
+  name:  chathura-eureka-dev
   labels:
-    app: chathura-eureka-dev
+    app:  chathura-eureka-dev
 spec:
-  #type: NodePort
+  # type: NodePort
   ports:
-  - port: 8761
-    targetPort: 8761
-  #  NodePort: 31512 2333
+  - port: 80 # Port on which service is running
+    targetPort: 8761 # Port on which eureka is running
   selector:
-    app: chathura-eureka-dev
+    app:  chathura-eureka-dev 
+--- 
+# Creating a ingress controller 
+# l7 load balancer
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name:  chathura-eureka-dev-ingress
+spec:
+  rules:
+  - host: eureka-dev.chathura.in
+    http:
+      paths:
+      - path: "/"
+        pathType: Prefix
+        backend:
+          service:
+            name:  chathura-eureka-dev
+            port:
+              number: 80
 
- #   edit docker file
- # added image ss
