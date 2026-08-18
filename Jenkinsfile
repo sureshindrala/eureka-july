@@ -13,8 +13,8 @@
 
 //update GARfdlsdsd
 
-helmPipeline(
+k8spipeline(
         appName: 'eureka'
-    // devHostPort: '5761',
-    // contPort: '8761'
-)
+//     devHostPort: '5761',
+//     contPort: '8761'
+ )
